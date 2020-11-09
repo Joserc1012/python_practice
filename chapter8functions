@@ -1,0 +1,46 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+
+def display_message():
+    """Displays a simple message"""
+    print("I'm learning a lot about functions in this chapter.")
+
+def favorite_book(title):
+    print("One of my favorite books is {}.".format(title))
+
+def make_shirt(text = 'I Love Python!', size = 'Large'):
+    print("The shirt is of size {} and says: {}".format(size, text))
+    
+def describe_city(city, country = 'Puerto Rico'):
+    print('{} is in {}.'.format(city, country))
+    
+def get_formatted_name(fname, lname, mname = ''):
+    if mname:
+        full_name = "{} {} {}".format(fname, mname, lname)
+    else:
+        full_name = "{} {}".format(fname, lname)
+    return full_name.title()
+
+def build_person(fname, lname, mname = '', age = None, race = ''):
+    person = {
+        'first name' : fname.title(),
+        'last name' : lname.title(),
+    }
+    
+    if age:
+        person['age'] = age
+    if mname:
+        person['middle name'] = mname.title()
+    if race:
+        person['race'] = race.title()
+    return person
+
+def city_country(city, country):
+    string = '{}, {}'.format(city.title(), country.title())
+    return string
+
