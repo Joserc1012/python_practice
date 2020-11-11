@@ -1,15 +1,21 @@
+"""Most of the practice functions for chapter 8 of PythonCrashCourse book"""
+
 def display_message():
     """Displays a simple message"""
     print("I'm learning a lot about functions in this chapter.")
 
+
 def favorite_book(title):
     print("One of my favorite books is {}.".format(title))
 
+
 def make_shirt(text = 'I Love Python!', size = 'Large'):
     print("The shirt is of size {} and says: {}".format(size, text))
+
     
 def describe_city(city, country = 'Puerto Rico'):
     print('{} is in {}.'.format(city, country))
+
     
 def get_formatted_name(fname, lname, mname = ''):
     if mname:
@@ -17,6 +23,7 @@ def get_formatted_name(fname, lname, mname = ''):
     else:
         full_name = "{} {}".format(fname, lname)
     return full_name.title()
+
 
 def build_person(fname, lname, mname = '', age = None, race = ''):
     person = {
@@ -32,7 +39,50 @@ def build_person(fname, lname, mname = '', age = None, race = ''):
         person['race'] = race.title()
     return person
 
+
 def city_country(city, country):
     string = '{}, {}'.format(city.title(), country.title())
     return string
+
+
+def make_album(artist, title, song_num = None):
+	album = {
+	'Artist' : artist.title(),
+	'Title' : title.title(),
+	}
+
+	if song_num:
+		album['Number of Songs'] = song_num
+
+	return album
+
+
+def show_messages(messages):
+	for text in messages:
+		print(text)
+
+
+def send_messages(oldmess, newmess):
+	while oldmess:
+		message = oldmess.pop()
+		print(message)
+		newmess.append(message)
+
+
+def sandwiches(*items):
+	print('This sandwich will have the follwing items:')
+	for item in items:
+		print(item)
+
+
+def build_profile(first, last, **user_info):
+	user_info['First Name'] = first.title()
+	user_info['Last Name'] = last.title()
+	return user_info
+
+
+def make_car(manufact, model, **kwargs):
+	kwargs['Manufacturer'] = manufact.title()
+	kwargs['Model'] = model.title()
+	return kwargs
 
