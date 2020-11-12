@@ -1,1 +1,139 @@
+class Cat:
+    """Creates a cat object"""
+    def __init__(self, name, age, instrument):
+        """Constructor method"""
+        self.name = name
+        self.age = age
+        self.instrument = instrument.lower()
+    
+    
+    def cat_intro(self):
+        """The cat introduces himself"""
+        print("Hi, my name is {} and I'm a Cat!".format(self.name))
+    
+    
+    def purr(self):
+        """Prints that the cat is purring"""
+        print('{} begins purring.'.format(self.name))
+
+    
+    def plays(self):
+        """The cat plays his instrument"""
+        if self.instrument == 'piano':
+            print("{} begins playing his piano. "
+            "Wow, he sounds just like Duke Ellington!!".format(self.name))
+        
+        if self.instrument == "sax" or self.instrument == "saxophone":
+            print("{} begins playing his saxophone. "
+            "Wow, this gives me Kenny G vibes!!".format(self.name))
+
+
+class Restaurant:
+    """Simple restaurant class"""
+    def __init__(self, name, cuisine_type):
+        """Constructor method"""
+        self.name = name.title()
+        self.cuisine_type = cuisine_type.lower()
+        self.number_served = 0
+
+    
+    def describe_restaurant(self):
+        """Describes restaurant information"""
+        print("{} serves {} food.".format(self.name, self.cuisine_type))
+
+    
+    def open_restaurant(self):
+        """Signals that the restaurant is opened"""
+        print('{} is now open!!'.format(self.name))
+    
+    
+    def set_number_seved(self, num):
+        """Sets the amount of customers served"""
+        self.number_served = num
+    
+    
+    def increment_number_served(self, num):
+        """Increment the number of customers served"""
+        self.number_served += num
+
+
+class User:
+    """Simple user class"""
+    def __init__(self, fname, lname, age=None, address=None):
+        """Constructor method"""
+        self.fname = fname.title()
+        self.lname = lname.title()
+        self.age = None
+        self.address = None
+        self.login_attempts = 0
+        if age != None:
+            self.age = age
+        
+        if address != None:
+            self.address = address
+    
+    
+    def full_name(self):
+        """Returns the User's full name"""
+        fname = '{} {}'.format(self.fname, self.lname)
+        return fname
+    
+        
+    def describe_user(self):
+        """Describes the user"""
+        print('\nUser Info: ')
+        print('Name: {}'.format(self.full_name()))
+        if self.age:
+            print('Age: {}'.format(self.age))
+        
+        if self.address:
+            print('Address: {}'.format(self.address))
+    
+    
+    def greet_user(self):
+        """Greets the user"""
+        print('\nHi {}!'.format(self.fname))
+    
+    
+    def increment_login_attempts(self):
+        """Increments login attempts by 1"""
+        self.login_attempts += 1
+    
+    
+    def reset_login_attempts(self):
+        """Resets login attempt counter"""
+        self.login_attempts = 0
+
+
+class IceCreamStand(Restaurant):
+    """Child class of restaurant"""
+    def __init__(self, name, cuisine_type, *flavors):
+        super().__init__(name, cuisine_type)
+        self.flavors = flavors
+    
+    
+    def display_flavors(self):
+        """Displays flavor list"""
+        print('The following flavors are available: ')
+        for flavor in self.flavors:
+            print(flavor.title())
+
+
+class Admin(User):
+    """An administrative User"""
+    def __init__(self, fname, lname, age=None, address=None, *privileges):
+        """Child constructor"""
+        super().__init__(fname, lname, age=None, address=None)
+        self.privileges = privileges
+    
+    
+    def show_privileges(self):
+        """Lists the admin privileges"""
+        print('The Admin has the following privileges: ')
+        for priv in self.privileges:
+            print(priv.title())
+
+
+class Privileges:
+    
 
