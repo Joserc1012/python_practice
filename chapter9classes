@@ -1,3 +1,5 @@
+from random import randint, choice 
+
 class Cat:
     """Creates a cat object"""
     def __init__(self, name, age, instrument):
@@ -6,16 +8,13 @@ class Cat:
         self.age = age
         self.instrument = instrument.lower()
     
-    
     def cat_intro(self):
         """The cat introduces himself"""
         print("Hi, my name is {} and I'm a Cat!".format(self.name))
-    
-    
+     
     def purr(self):
         """Prints that the cat is purring"""
         print('{} begins purring.'.format(self.name))
-
     
     def plays(self):
         """The cat plays his instrument"""
@@ -35,23 +34,19 @@ class Restaurant:
         self.name = name.title()
         self.cuisine_type = cuisine_type.lower()
         self.number_served = 0
-
     
     def describe_restaurant(self):
         """Describes restaurant information"""
         print("{} serves {} food.".format(self.name, self.cuisine_type))
-
-    
+   
     def open_restaurant(self):
         """Signals that the restaurant is opened"""
         print('{} is now open!!'.format(self.name))
-    
-    
+        
     def set_number_seved(self, num):
         """Sets the amount of customers served"""
         self.number_served = num
-    
-    
+        
     def increment_number_served(self, num):
         """Increment the number of customers served"""
         self.number_served += num
@@ -71,14 +66,12 @@ class User:
         
         if address != None:
             self.address = address
-    
-    
+       
     def full_name(self):
         """Returns the User's full name"""
         fname = '{} {}'.format(self.fname, self.lname)
         return fname
-    
-        
+            
     def describe_user(self):
         """Describes the user"""
         print('\nUser Info: ')
@@ -88,18 +81,15 @@ class User:
         
         if self.address:
             print('Address: {}'.format(self.address))
-    
-    
+        
     def greet_user(self):
         """Greets the user"""
         print('\nHi {}!'.format(self.fname))
-    
-    
+       
     def increment_login_attempts(self):
         """Increments login attempts by 1"""
         self.login_attempts += 1
-    
-    
+        
     def reset_login_attempts(self):
         """Resets login attempt counter"""
         self.login_attempts = 0
@@ -110,8 +100,7 @@ class IceCreamStand(Restaurant):
     def __init__(self, name, cuisine_type, *flavors):
         super().__init__(name, cuisine_type)
         self.flavors = flavors
-    
-    
+        
     def display_flavors(self):
         """Displays flavor list"""
         print('The following flavors are available: ')
@@ -124,16 +113,119 @@ class Admin(User):
     def __init__(self, fname, lname, age=None, address=None, *privileges):
         """Child constructor"""
         super().__init__(fname, lname, age=None, address=None)
-        self.privileges = privileges
+        self.privileges = Privileges(privileges)
     
-    
-    def show_privileges(self):
-        """Lists the admin privileges"""
-        print('The Admin has the following privileges: ')
-        for priv in self.privileges:
-            print(priv.title())
-
 
 class Privileges:
-    
+    """Class that shows the priveleges of a user"""
+    def __init__(self, privileges):
+        self.privileges = privileges
+
+    def show_privileges(self):
+        print('As an admin you can do the following: ')
+        for priv in self.privileges:
+            print('{}'.format(priv.title()))
+
+
+class Car:
+    """A simple attempt to represent a car."""
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        long_name = f"{self.year} {self.make} {self.model}"
+        return long_name.title()
+
+    def read_odometer(self):
+        print(f"This car has {self.odometer_reading} miles on it.")
+
+    def update_odometer(self, mileage):
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+        else:
+            print("You can't roll back an odometer!")
+
+    def increment_odometer(self, miles):
+        self.odometer_reading += miles
+
+
+class Battery:
+    """A simple attempt to model a battery for an electric car."""
+    def __init__(self, battery_size=75):
+        """Initialize the battery's attributes."""
+        self.battery_size = battery_size
+
+    def describe_battery(self):
+        """Print a statement describing the battery size."""
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+    def get_range(self):
+        """Print a statement about the range this battery provides."""
+        if self.battery_size == 75:
+            range = 260
+        elif self.battery_size == 100:
+            range = 315
+        print(f"This car can go about {range} miles on a full charge.")
+
+    def upgrade_battery(self):
+        if self.battery_size != 100:
+            self.battery_size = 100
+        else:
+            print('We already have the ideal battery size.')
+
+
+class ElectricCar(Car):
+    """Represent aspects of a car, specific to electric vehicles."""
+    def __init__(self, make, model, year):
+        """
+        Initialize attributes of the parent class.
+        Then initialize attributes specific to an electric car.
+        """
+        super().__init__(make, model, year)
+        self.battery = Battery()
+
+
+class Die:
+    """Simple die class"""
+    def __init__(self, sides=6):
+        self.sides = sides
+
+    def roll_die(self):
+        """Rolls the die with the specified num of sides"""
+        num = randint(1, self.sides)
+        return num
+
+
+class Lottery:
+    """Picks between a list of ints and chars"""
+    def __init__(self, choices):
+        self.choices = choices
+        self.win = []
+        for x in range(0, 4):
+            self.win.append(choice(self.choices))
+
+    def print_win(self):
+        """Picks from elements of a list at random"""
+        print('The ticket with the following numbers/letters wins!')
+        for ele in self.win:
+            print(ele, end=" ")
+
+    def odds(self):
+        """Takes ticket and outputs the odds of winning"""
+        win = []
+        counter = 0
+
+        while len(win) < 4:
+            pulled_num = choice(self.choices)
+            if pulled_num in self.win and pulled_num not in win:
+                win.append(pulled_num)
+            counter += 1
+
+        print('It took {} loops to get a winning ticket!'.format(counter))
+
+
+
 
