@@ -28,12 +28,12 @@ def num_recall(file):
         return num
 
 def remember():
+    """Verifies if number is stored and prints to user if it is"""
     num = num_recall('favorite_num.json')
     if num:
         print(f'Your favorite number is {num}!')
     else:
         ask_num()
         
-remember()
 remember()
             
